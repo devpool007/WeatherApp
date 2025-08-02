@@ -34,8 +34,14 @@
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				Assets.xcassets,
-				ContentView.swift,
+				Extensions.swift,
 				Managers/LocationManager.swift,
+				Managers/WeatherManager.swift,
+				Models/WeatherResonse.swift,
+				Views/ContentView.swift,
+				Views/LoadingView.swift,
+				Views/WeatherView.swift,
+				Views/WelcomeView.swift,
 				WeatherAppApp.swift,
 			);
 			target = 37EB5DDA2E3D802400AD3C2C /* WeatherApp */;
@@ -44,7 +50,11 @@
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				Assets.xcassets,
-				ContentView.swift,
+				Extensions.swift,
+				Views/ContentView.swift,
+				Views/LoadingView.swift,
+				Views/WeatherView.swift,
+				Views/WelcomeView.swift,
 				WeatherAppApp.swift,
 			);
 			target = 37EB5DF22E3D802500AD3C2C /* WeatherAppUITests */;
