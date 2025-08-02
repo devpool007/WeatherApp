@@ -29,9 +29,35 @@
 		37EB5DF32E3D802500AD3C2C /* WeatherAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WeatherAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		3786B9EF2E3DF98100374715 /* Exceptions for "WeatherApp" folder in "WeatherApp" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Assets.xcassets,
+				ContentView.swift,
+				Managers/LocationManager.swift,
+				WeatherAppApp.swift,
+			);
+			target = 37EB5DDA2E3D802400AD3C2C /* WeatherApp */;
+		};
+		3786B9F02E3DF98100374715 /* Exceptions for "WeatherApp" folder in "WeatherAppUITests" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Assets.xcassets,
+				ContentView.swift,
+				WeatherAppApp.swift,
+			);
+			target = 37EB5DF22E3D802500AD3C2C /* WeatherAppUITests */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		37EB5DDD2E3D802400AD3C2C /* WeatherApp */ = {
+		3786B9EB2E3DF98100374715 /* WeatherApp */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				3786B9EF2E3DF98100374715 /* Exceptions for "WeatherApp" folder in "WeatherApp" target */,
+				3786B9F02E3DF98100374715 /* Exceptions for "WeatherApp" folder in "WeatherAppUITests" target */,
+			);
 			path = WeatherApp;
 			sourceTree = "<group>";
 		};
@@ -75,7 +101,7 @@
 		37EB5DD22E3D802400AD3C2C = {
 			isa = PBXGroup;
 			children = (
-				37EB5DDD2E3D802400AD3C2C /* WeatherApp */,
+				3786B9EB2E3DF98100374715 /* WeatherApp */,
 				37EB5DEC2E3D802500AD3C2C /* WeatherAppTests */,
 				37EB5DF62E3D802500AD3C2C /* WeatherAppUITests */,
 				37EB5DDC2E3D802400AD3C2C /* Products */,
@@ -106,9 +132,6 @@
 			buildRules = (
 			);
 			dependencies = (
-			);
-			fileSystemSynchronizedGroups = (
-				37EB5DDD2E3D802400AD3C2C /* WeatherApp */,
 			);
 			name = WeatherApp;
 			packageProductDependencies = (
@@ -154,6 +177,7 @@
 				37EB5DF52E3D802500AD3C2C /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
+				3786B9EB2E3DF98100374715 /* WeatherApp */,
 				37EB5DF62E3D802500AD3C2C /* WeatherAppUITests */,
 			);
 			name = WeatherAppUITests;
@@ -407,7 +431,7 @@
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 18.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 15.5;
@@ -446,7 +470,7 @@
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 18.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 15.5;
