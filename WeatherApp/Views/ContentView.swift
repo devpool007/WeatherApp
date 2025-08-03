@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import CoreLocation
 
 struct ContentView: View {
     @StateObject var locationManager = LocationManager()
@@ -18,17 +19,12 @@ struct ContentView: View {
             if let location = locationManager.location {
                 
                 if let weather = weather{
-                    WeatherView(weather: weather)
+                    WeatherView(weather: $weather, weatherManager: weatherManager, location: location)
                 }
                 else{
                     LoadingView()
                         .task {
-                            do {
-                                weather = try await weatherManager.getCurrentWeather(latitude: location.latitude, longitude: location.longitude)
-                            }
-                            catch {
-                                print("Error getting weather: \(error)")
-                            }
+                           await loadWeather(for: location)
                         }
                 }
             } else {
@@ -42,10 +38,24 @@ struct ContentView: View {
             
             
         }
+        .animation(.easeInOut, value: weather != nil)
         .background(Color(hue: 0.621, saturation: 0.885, brightness: 0.415))
         .preferredColorScheme(.dark)
         
+        
     }
+    
+    func loadWeather(for location: CLLocationCoordinate2D) async {
+        do {
+            weather = try await weatherManager.getCurrentWeather(
+                latitude: location.latitude,
+                longitude: location.longitude
+            )
+        } catch {
+            print("Error getting weather: \(error)")
+        }
+    }
+
 }
 
 #Preview {

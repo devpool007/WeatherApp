@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import CoreLocation
 
 func mapWeatherToIcon(_ weatherMain: String) -> String {
     switch weatherMain {
@@ -31,9 +32,9 @@ func mapWeatherToIcon(_ weatherMain: String) -> String {
 
 struct WeatherView: View {
 
-    @StateObject var locationManager = LocationManager()
-    var weatherManager = WeatherManager()
-    @State var weather: ResponseBody?
+    @Binding var weather: ResponseBody?
+    var weatherManager: WeatherManager
+    var location: CLLocationCoordinate2D
     @State var todayDate = Date().formatted(.dateTime.month().day().hour().minute())
     
     var body: some View {
@@ -43,7 +44,7 @@ struct WeatherView: View {
                 ScrollView{
                     VStack {
                         VStack(alignment: .leading, spacing: 5) {
-                            Text(weather?.name ?? "Munich")
+                            Text(weather?.name ?? "Loading city...")
                                 .bold().font(.title)
                             
                             Text("\(todayDate)")
@@ -57,14 +58,14 @@ struct WeatherView: View {
                             HStack {
                                 
                                 VStack(spacing: 20) {
-                                    Image(systemName: mapWeatherToIcon(weather?.weather[0].main ?? "sun.max.fill"))
+                                    Image(systemName: mapWeatherToIcon(weather?.weather[0].main ?? "Loading weather..."))
                                         .font(.system(size: 40))
-                                    Text(weather!.weather[0].main)
+                                    Text(weather?.weather[0].main ?? "Maybe cloudy...")
                                 }.frame(width: 150, alignment: .leading)
                                 
                                 Spacer()
                                 
-                                Text(weather!.main.feels_like.roundDouble() + "°")
+                                Text((weather?.main.feels_like.roundDouble() ?? "Getting temp...") + "°")
                                     .font(.system(size: 80))
                                     .fontWeight(.bold)
                                     .padding()
@@ -96,15 +97,15 @@ struct WeatherView: View {
                             Text("Weather now")
                                 .bold().padding(.bottom)
                             HStack{
-                                WeatherRow(logo: "thermometer", name: "Min temp", value: weather!.main.temp_min.roundDouble() + "°")
+                                WeatherRow(logo: "thermometer", name: "Min temp", value: (weather?.main.temp_min.roundDouble() ?? "0") + "°")
                                 Spacer()
-                                WeatherRow(logo: "thermometer", name: "Max temp", value: weather!.main.temp_max.roundDouble() + "°")
+                                WeatherRow(logo: "thermometer", name: "Max temp", value: weather?.main.temp_max.roundDouble() ?? "100" + "°")
                             }
                             
                             HStack{
-                                WeatherRow(logo: "wind", name: "Wind speed", value: weather!.wind.speed.roundDouble() + "m/s")
+                                WeatherRow(logo: "wind", name: "Wind speed", value: weather?.wind.speed.roundDouble() ?? "0" + "m/s")
                                 Spacer()
-                                WeatherRow(logo: "humidity", name: "Humidity", value: weather!.main.humidity.roundDouble() + "%")
+                                WeatherRow(logo: "humidity", name: "Humidity", value: weather?.main.humidity.roundDouble() ?? "Getting humidity..." + "%")
                             }
                             
                         }
@@ -126,7 +127,6 @@ struct WeatherView: View {
         }
     
     func fetchWeather() async {
-        guard let location = locationManager.location else { return }
         do {
             weather = try await weatherManager.getCurrentWeather(
                 latitude: location.latitude,
@@ -141,6 +141,14 @@ struct WeatherView: View {
 }
 
 #Preview {
-    WeatherView(weather: .preview)
+    StatefulPreviewWrapper(ResponseBody.preview) { mockWeather in
+        WeatherView(
+            weather: mockWeather,
+            weatherManager: WeatherManager(),
+            location: CLLocationCoordinate2D(latitude: 48.137154, longitude: 11.576124)
+        )
+    }
 }
+
+
     
