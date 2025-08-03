@@ -43,7 +43,7 @@ struct ResponseBody: Decodable {
 
 extension ResponseBody {
     static let preview: ResponseBody = ResponseBody(
-        coord: CoordinatesResponse(lon: -74.006, lat: 40.7143),
+        coord: CoordinatesResponse(lon: 48.1351, lat: 11.5820),
         weather: [
             WeatherResponse(
                 id: 804,
@@ -60,7 +60,7 @@ extension ResponseBody {
             pressure: 1015,
             humidity: 73
         ),
-        name: "New York",
+        name: "Munich",
         wind: WindResponse(
             speed: 3.13,
             deg: 274

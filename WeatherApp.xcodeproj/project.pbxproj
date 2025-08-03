@@ -34,6 +34,7 @@
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				Assets.xcassets,
+				Components/WeatherRow.swift,
 				Extensions.swift,
 				Managers/LocationManager.swift,
 				Managers/WeatherManager.swift,
