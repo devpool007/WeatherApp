@@ -22,13 +22,6 @@ extension View {
     }
 }
 
-extension CLLocationCoordinate2D: Equatable {
-    public static func == (lhs: CLLocationCoordinate2D, rhs: CLLocationCoordinate2D) -> Bool {
-        lhs.latitude == rhs.latitude && lhs.longitude == rhs.longitude
-    }
-}
-
-
 // Custom RoundedCorner shape used for cornerRadius extension above
 struct RoundedCorner: Shape {
     var radius: CGFloat = .infinity

@@ -36,6 +36,7 @@
 				Assets.xcassets,
 				Components/WeatherRow.swift,
 				Extensions.swift,
+				"Launch Screen.storyboard",
 				Managers/LocationManager.swift,
 				Managers/WeatherManager.swift,
 				Models/WeatherResonse.swift,
@@ -43,6 +44,7 @@
 				Secrets.xcconfig,
 				Views/ContentView.swift,
 				Views/LoadingView.swift,
+				Views/SplashView.swift,
 				Views/WeatherView.swift,
 				Views/WelcomeView.swift,
 				WeatherAppApp.swift,
@@ -55,10 +57,12 @@
 				Assets.xcassets,
 				Extensions.swift,
 				Info.plist,
+				"Launch Screen.storyboard",
 				PreviewHelpers.swift,
 				Secrets.xcconfig,
 				Views/ContentView.swift,
 				Views/LoadingView.swift,
+				Views/SplashView.swift,
 				Views/WeatherView.swift,
 				Views/WelcomeView.swift,
 				WeatherAppApp.swift,
@@ -436,6 +440,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_ENTITLEMENTS = WeatherApp/WeatherApp.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -478,6 +483,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_ENTITLEMENTS = WeatherApp/WeatherApp.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
