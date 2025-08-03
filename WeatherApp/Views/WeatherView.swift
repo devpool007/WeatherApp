@@ -100,7 +100,7 @@ struct WeatherView: View {
                                 
                                 Spacer()
                                 
-                                Text((weather?.main.feels_like.roundDouble() ?? "Getting temp...") + "°")
+                                Text((weather?.main.feels_like.roundDouble() ?? "20") + "°")
                                     .font(.system(size: 80))
                                     .fontWeight(.bold)
                                     .padding()
