@@ -36,7 +36,9 @@ struct WeatherView: View {
     var weatherManager: WeatherManager
     var location: CLLocationCoordinate2D
     @State var todayDate = Date().formatted(.dateTime.month().day().hour().minute())
-    
+    @State private var showSearchBar = false
+    @State private var searchText = ""
+
     var body: some View {
             
       
@@ -44,6 +46,39 @@ struct WeatherView: View {
                 ScrollView{
                     VStack {
                         VStack(alignment: .leading, spacing: 5) {
+                            // 🔍 Search Button
+                            HStack {
+                                Spacer()
+                                Button(action: {
+                                    withAnimation {
+                                        showSearchBar.toggle()
+                                    }
+                                    searchText = ""
+                                }) {
+                                    Image(systemName: "magnifyingglass")
+                                        .font(.title2)
+                                        .padding(6)
+                                        .foregroundColor(.white)
+
+                                }
+                            }
+                            
+                            // 🔎 Search Bar (if visible)
+                            if showSearchBar {
+                                TextField("Enter city name", text: $searchText)
+                                    .textFieldStyle(RoundedBorderTextFieldStyle())
+                                    .padding(.horizontal)
+                                    .submitLabel(.search)
+                                    .onSubmit {
+                                        Task {
+                                            await fetchWeatherForCity()
+                                        }
+                                    }
+                                    .transition(.move(edge: .top).combined(with: .opacity))
+                                    .animation(.easeInOut, value: showSearchBar)
+                                
+                            }
+                            
                             Text(weather?.name ?? "Loading city...")
                                 .bold().font(.title)
                             
@@ -58,7 +93,7 @@ struct WeatherView: View {
                             HStack {
                                 
                                 VStack(spacing: 20) {
-                                    Image(systemName: mapWeatherToIcon(weather?.weather[0].main ?? "Loading weather..."))
+                                    Image(systemName: mapWeatherToIcon(weather?.weather[0].main ?? "Clear"))
                                         .font(.system(size: 40))
                                     Text(weather?.weather[0].main ?? "Maybe cloudy...")
                                 }.frame(width: 150, alignment: .leading)
@@ -118,7 +153,13 @@ struct WeatherView: View {
                     }
                     
                 }.refreshable {
-                    await fetchWeather()
+                    if searchText == ""{
+                        await fetchWeather()
+                    }
+                    else {
+                        await fetchWeatherForCity()
+                    }
+                    
                 }
                 
             }.edgesIgnoringSafeArea(.bottom)
@@ -137,6 +178,18 @@ struct WeatherView: View {
             print("Error refreshing weather: \(error)")
         }
     }
+    
+    func fetchWeatherForCity() async {
+        guard !searchText.trimmingCharacters(in: .whitespaces).isEmpty else { return }
+        do {
+            let newWeather = try await weatherManager.getWeather(forCity: searchText)
+            weather = newWeather
+            showSearchBar = false
+        } catch {
+            print("Error fetching weather for \(searchText): \(error)")
+        }
+    }
+
     
 }
 
