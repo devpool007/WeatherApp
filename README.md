@@ -25,4 +25,4 @@ WeatherApp is a simple application designed to display weather information using
 
 
 ![Screenshot of my project](./screenshots/IMG_6808.PNG)
-![Screenshot of my project](./screenshots/IMG_6809.PNG)
+
