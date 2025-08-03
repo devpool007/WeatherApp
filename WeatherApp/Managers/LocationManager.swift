@@ -18,12 +18,15 @@ class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
     override init(){
         super.init()
         manager.delegate = self
+        manager.desiredAccuracy = kCLLocationAccuracyBest
     }
     
-    func requestLocation(){
+    func requestLocation() {
         isLoading = true
-        manager.requestLocation()
+        manager.requestWhenInUseAuthorization() // Ask permission
+        manager.requestLocation()               // Get location
     }
+
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         location = locations.last?.coordinate
@@ -35,6 +38,5 @@ class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
         isLoading = false
     }
     
-   
     
 }

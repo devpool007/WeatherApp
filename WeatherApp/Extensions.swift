@@ -7,6 +7,7 @@
 
 import Foundation
 import SwiftUI
+import CoreLocation
 
 extension Double {
     func roundDouble() -> String {
@@ -20,6 +21,13 @@ extension View {
         clipShape(RoundedCorner(radius: radius, corners: corners) )
     }
 }
+
+extension CLLocationCoordinate2D: Equatable {
+    public static func == (lhs: CLLocationCoordinate2D, rhs: CLLocationCoordinate2D) -> Bool {
+        lhs.latitude == rhs.latitude && lhs.longitude == rhs.longitude
+    }
+}
+
 
 // Custom RoundedCorner shape used for cornerRadius extension above
 struct RoundedCorner: Shape {

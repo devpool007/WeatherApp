@@ -38,7 +38,7 @@ struct ContentView: View {
                 else {
                     WelcomeView().environmentObject(locationManager)
                 }
-            }
+            }  
             
             
         }
