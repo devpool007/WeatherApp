@@ -185,6 +185,7 @@ struct WeatherView: View {
             let newWeather = try await weatherManager.getWeather(forCity: searchText)
             weather = newWeather
             showSearchBar = false
+            todayDate = Date().formatted(.dateTime.month().day().hour().minute()) // update date
         } catch {
             print("Error fetching weather for \(searchText): \(error)")
         }
